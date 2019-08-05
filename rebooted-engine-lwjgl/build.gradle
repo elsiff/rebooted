@@ -1,0 +1,42 @@
+import org.gradle.internal.os.OperatingSystem
+
+project.ext.lwjglVersion = "3.2.0"
+
+switch (OperatingSystem.current()) {
+    case OperatingSystem.WINDOWS:
+        project.ext.lwjglNatives = "natives-windows"
+        break
+    case OperatingSystem.LINUX:
+        project.ext.lwjglNatives = "natives-linux"
+        break
+    case OperatingSystem.MAC_OS:
+        project.ext.lwjglNatives = "natives-macos"
+        break
+}
+
+dependencies {
+    implementation 'commons-io:commons-io:2.6'
+
+    /* LWJGL Libraries */
+    implementation "org.lwjgl:lwjgl:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-assimp:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-bgfx:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-nanovg:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-nuklear:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-openal:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-par:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-stb:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
+    implementation "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-bgfx:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-nanovg:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-par:$lwjglVersion:$lwjglNatives"
+    implementation "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+}

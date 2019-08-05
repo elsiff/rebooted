@@ -1,0 +1,3 @@
+rootProject.name = 'rebooted'
+include 'rebooted-engine-lwjgl', 'rebooted-engine', 'rebooted-game'
+
