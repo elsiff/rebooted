@@ -20,7 +20,7 @@ class TextDrawer(
         require(thing is Text)
 
         val position = option.position
-        val offset = mutableVec2f()
+        val offset = mutableVec2f(0f, 0f)
 
         thing.block.traverse { string, style ->
             var maxHeight = style.font.size

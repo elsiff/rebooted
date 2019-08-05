@@ -40,7 +40,7 @@ class World(
         Game.engine.eventTrigger.call(WorldUpdateEvent(this, deltaTime))
 
         for (entity in _entities) {
-            val velLen2 = entity.velocity.lengthSquared()
+            val velLen2 = entity.velocity.lengthSquared
 
             if (velLen2 > 0) {
                 entity.velocity *= (1 - deltaTime * entity.drag)

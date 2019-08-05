@@ -4,6 +4,7 @@ import me.elsiff.rebooted.engine.lwjgl.window.graphic.batch.Batch
 import me.elsiff.rebooted.engine.lwjgl.window.graphic.batch.ShaderProgramType
 import me.elsiff.rebooted.engine.lwjgl.window.graphic.batch.Vertex
 import me.elsiff.rebooted.engine.lwjgl.window.graphic.drawable.GlTextureRegion
+import me.elsiff.rebooted.engine.math.vec2f
 import me.elsiff.rebooted.engine.window.graphic.Color
 import me.elsiff.rebooted.engine.window.graphic.drawable.Drawable
 
@@ -15,7 +16,7 @@ class GlTextureRegionDrawer : Drawer {
         require(thing is GlTextureRegion)
 
         val position = option.position
-        val v2 = position.plus(thing.size.width, thing.size.height)
+        val v2 = position + vec2f(thing.size.width, thing.size.height)
         val color = if (option is GlTextureRegion.DrawingOption) option.color else DEFAULT_COLOR
 
         val x1 = position.x

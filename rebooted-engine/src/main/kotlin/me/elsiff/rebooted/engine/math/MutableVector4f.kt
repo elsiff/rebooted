@@ -1,12 +1,12 @@
 package me.elsiff.rebooted.engine.math
 
 /**
- * Created by elsiff on 2019-07-24.
+ * Created by elsiff on 2019-08-06.
  */
-class MutableVector3f(
-    x: Float, y: Float, z: Float
-) : Vector3f(x, y, z) {
-    override var elements: MutableList<Float> = mutableListOf(x, y, z)
+class MutableVector4f(
+    x: Float, y: Float, z: Float, w: Float
+) : Vector4f(x, y, z, w) {
+    override var elements: MutableList<Float> = mutableListOf(x, y, z, w)
 
     override var x: Float
         get() = elements[0]
@@ -23,9 +23,14 @@ class MutableVector3f(
         set(value) {
             elements[2] = value
         }
+    override var w: Float
+        get() = elements[3]
+        set(value) {
+            elements[3] = value
+        }
 
     operator fun set(i: Int, value: Float) {
-        require(i in 0..2) { throw IndexOutOfBoundsException() }
+        require(i in 0..3) { throw IndexOutOfBoundsException() }
         elements[i] = value
     }
 
@@ -38,10 +43,11 @@ class MutableVector3f(
     override fun div(divider: Float) = super.div(divider).toMutable()
 }
 
-operator fun Float.plus(vector: MutableVector3f): MutableVector3f = vector.plus(this)
-operator fun Float.minus(vector: MutableVector3f): MutableVector3f = vector.minus(this)
-operator fun Float.times(vector: MutableVector3f): MutableVector3f = vector.times(this)
-operator fun Float.div(vector: MutableVector3f): MutableVector3f = vector.div(this)
+operator fun Float.plus(vector: MutableVector4f): MutableVector4f = vector.plus(this)
+operator fun Float.minus(vector: MutableVector4f): MutableVector4f = vector.minus(this)
+operator fun Float.times(vector: MutableVector4f): MutableVector4f = vector.times(this)
+operator fun Float.div(vector: MutableVector4f): MutableVector4f = vector.div(this)
 
-fun mutableVec3f(x: Float, y: Float, z: Float) = MutableVector3f(x, y, z)
-fun mutableVec3f(x: Number, y: Number, z: Number) = MutableVector3f(x.toFloat(), y.toFloat(), z.toFloat())
+fun mutableVec4f(x: Float, y: Float, z: Float, w: Float) = MutableVector4f(x, y, z, w)
+fun mutableVec4f(x: Number, y: Number, z: Number, w: Number) =
+    MutableVector4f(x.toFloat(), y.toFloat(), z.toFloat(), w.toFloat())

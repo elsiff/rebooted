@@ -1,6 +1,6 @@
 package me.elsiff.rebooted.engine.lwjgl.window.graphic.batch
 
-import me.elsiff.rebooted.engine.math.Matrix4f
+import me.elsiff.rebooted.engine.math.Matrix4x4f
 import me.elsiff.rebooted.engine.window.Window
 import org.lwjgl.opengl.GL20.*
 import org.lwjgl.opengl.GL30.glBindFragDataLocation
@@ -57,10 +57,10 @@ abstract class ShaderProgram(
         glUniform1i(location, value)
     }
 
-    fun setUniform(location: Int, matrix: Matrix4f) {
+    fun setUniform(location: Int, matrix: Matrix4x4f) {
         MemoryStack.stackPush().use { stack ->
             val buffer = stack.mallocFloat(4 * 4)
-            for (element in matrix.transpose()) {
+            for (element in matrix.transposed()) {
                 buffer.put(element)
             }
             buffer.flip()
