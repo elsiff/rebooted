@@ -1,5 +1,7 @@
 package me.elsiff.rebooted.game.world.physic
 
+import me.elsiff.rebooted.game.Game
+import me.elsiff.rebooted.game.event.CollisionOccurredEvent
 import me.elsiff.rebooted.game.world.World
 import me.elsiff.rebooted.game.world.entity.Entity
 import me.elsiff.rebooted.game.world.physic.collision.Collision
@@ -55,7 +57,7 @@ class Physics(
         a.handleCollided(b)
         b.handleCollided(a)
 
-        //TODO Trigger a collision event
+        Game.engine.eventTrigger.call(CollisionOccurredEvent(collision, setOf(a, b)))
     }
 
     private fun applyImpulse(a: RigidBody, b: RigidBody, collision: Collision) {
