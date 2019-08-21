@@ -26,7 +26,7 @@ interface Collision {
                 if (b is BoundingCircle)
                     return CircleVsCircleCollision.between(a, b)
             }
-            throw IllegalArgumentException("An invalid collider")
+            throw IllegalArgumentException("An invalid bounding")
         }
     }
 }
