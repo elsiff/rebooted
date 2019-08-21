@@ -30,8 +30,9 @@ class WorldState : GameState {
     }
 
     override fun update(deltaTime: Float) {
-        // Debug Message
-        Game.engine.mainWindow.title = "rebooted [${world.entities.size} entities, FPS: ${1f / deltaTime}]"
+        if (Game.isDebugMode) {
+            Game.engine.mainWindow.title = "rebooted [${world.entities.size} entities, FPS: ${1f / deltaTime}]"
+        }
 
         world.update(deltaTime)
     }
@@ -43,9 +44,10 @@ class WorldState : GameState {
             for (entity in world.entities) {
                 add(entity.graphic, entity.positionIn(camera))
 
-                // Debug Graphic
-                for (bounding in entity.rigidBody.boundings) {
-                    add(bounding.debugGraphic, entity.positionIn(camera))
+                if (Game.isDebugMode) {
+                    for (bounding in entity.rigidBody.boundings) {
+                        add(bounding.debugGraphic, entity.positionIn(camera))
+                    }
                 }
             }
             for (widget in layout.widgets) {

@@ -14,6 +14,7 @@ object Game {
     val engine: Engine = LwjglEngine(
         logger = LoggerFactory.getLogger(this.javaClass)
     )
+    var isDebugMode: Boolean = false
 
     fun start() = runBlocking {
         engine.start(
