@@ -39,14 +39,7 @@ class World(
     fun update(deltaTime: Float) {
         Game.engine.eventTrigger.call(WorldUpdateEvent(this, deltaTime))
 
-        for (entity in _entities) {
-            val velLen2 = entity.velocity.lengthSquared
-
-            if (velLen2 > 0) {
-                entity.velocity *= (1 - deltaTime * entity.drag)
-                entity.position += entity.velocity * deltaTime
-            }
-        }
+        physics.update(deltaTime)
     }
 
     fun addEntity(entity: Entity) {

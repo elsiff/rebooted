@@ -9,12 +9,13 @@ import me.elsiff.rebooted.game.world.Altitudes
 import me.elsiff.rebooted.game.world.World
 import me.elsiff.rebooted.game.world.entity.ability.AbilityRegistry
 import me.elsiff.rebooted.game.world.physic.AABB
+import me.elsiff.rebooted.game.world.physic.BoundingCircle
 import me.elsiff.rebooted.game.world.physic.RigidBody
 
 /**
- * Created by elsiff on 2019-08-01.
+ * Created by elsiff on 2019-08-14.
  */
-class Bullet(
+class Enemy(
     override val world: World,
     position: Vector2f
 ) : Entity {
@@ -27,10 +28,10 @@ class Bullet(
         restitution = 1f,
         drag = 0.25f
     ).apply {
-        boundings += AABB(this, size(10f, 10f))
+        boundings += AABB(this, size(40f, 40f))
     }
-    override val altitude: Int = Altitudes.LOW_SKY
-    override val blockingAltitudes: IntRange = AltitudeRanges.EMPTY
+    override val altitude: Int = Altitudes.HIGH_SKY
+    override val blockingAltitudes: IntRange = AltitudeRanges.LOW_SKY_ONLY
 
     override val graphic: Graphic = BulletGraphic()
     override val abilities: AbilityRegistry = AbilityRegistry()

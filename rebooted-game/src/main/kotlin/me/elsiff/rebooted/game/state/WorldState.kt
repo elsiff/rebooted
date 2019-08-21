@@ -8,6 +8,7 @@ import me.elsiff.rebooted.game.graphic.add
 import me.elsiff.rebooted.game.ui.Layout
 import me.elsiff.rebooted.game.world.Camera
 import me.elsiff.rebooted.game.world.World
+import me.elsiff.rebooted.game.world.entity.Enemy
 import me.elsiff.rebooted.game.world.entity.Player
 
 /**
@@ -17,13 +18,15 @@ class WorldState : GameState {
     private var _isDisposed = false
     override val isDisposed: Boolean get() = _isDisposed
 
-    private val world: World = World(size(100f, 100f))
+    private val world: World = World(size(500f, 500f))
     private val layout: Layout = Layout()
     private val camera: Camera = Camera(world, Game.engine.mainWindow.size)
     private val player: Player = Player(world, vec2f(50f, 50f))
 
     override fun enter() {
         world += player
+
+        world += Enemy(world, vec2f(250f, 250f))
     }
 
     override fun update(deltaTime: Float) {
@@ -39,6 +42,11 @@ class WorldState : GameState {
 
             for (entity in world.entities) {
                 add(entity.graphic, entity.positionIn(camera))
+
+                // Debug Graphic
+                for (bounding in entity.rigidBody.boundings) {
+                    add(bounding.debugGraphic, entity.positionIn(camera))
+                }
             }
             for (widget in layout.widgets) {
                 add(widget.graphic, widget.position)
