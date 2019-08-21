@@ -7,9 +7,9 @@ import me.elsiff.rebooted.game.graphic.PlayerGraphic
 import me.elsiff.rebooted.game.world.AltitudeRanges
 import me.elsiff.rebooted.game.world.Altitudes
 import me.elsiff.rebooted.game.world.World
-import me.elsiff.rebooted.game.world.entity.ability.AbilityRegistry
-import me.elsiff.rebooted.game.world.entity.ability.MoveViaControllerAbility
-import me.elsiff.rebooted.game.world.entity.ability.ShootShotgunAbility
+import me.elsiff.rebooted.game.world.entity.rule.EntityRule
+import me.elsiff.rebooted.game.world.entity.rule.MoveViaControllerRule
+import me.elsiff.rebooted.game.world.entity.rule.ShootShotgunRule
 import me.elsiff.rebooted.game.world.physic.AABB
 import me.elsiff.rebooted.game.world.physic.RigidBody
 
@@ -35,11 +35,10 @@ class Player(
     override val blockingAltitudes: IntRange = AltitudeRanges.GROUND_ONLY
 
     override val graphic: Graphic = PlayerGraphic()
-    override val abilities: AbilityRegistry = AbilityRegistry()
-        .apply {
-            register(MoveViaControllerAbility(this@Player, 100f))
-            register(ShootShotgunAbility(this@Player))
-        }
+    override val rules: MutableList<EntityRule> = mutableListOf(
+        MoveViaControllerRule(this@Player, 100f),
+        ShootShotgunRule(this@Player)
+    )
 
     override fun handleCollided(other: Entity) {
         // Do Nothing
@@ -48,7 +47,7 @@ class Player(
     override fun dispose() {
         check(!_isDisposed)
 
-        abilities.dispose()
+        rules.forEach { it.dispose() }
 
         _isDisposed = true
     }

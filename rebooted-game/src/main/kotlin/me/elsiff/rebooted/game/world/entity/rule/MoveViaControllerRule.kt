@@ -1,4 +1,4 @@
-package me.elsiff.rebooted.game.world.entity.ability
+package me.elsiff.rebooted.game.world.entity.rule
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,39 +17,23 @@ import me.elsiff.rebooted.game.world.entity.Entity
 /**
  * Created by elsiff on 2019-07-30.
  */
-class MoveViaControllerAbility(
-    private val entity: Entity,
-    private val speed: Float
-) : Ability {
+class MoveViaControllerRule(
+    override val entity: Entity,
+    val speed: Float
+) : EntityRule {
     private var _isDisposed = false
     override val isDisposed: Boolean get() = _isDisposed
 
-    private var _isEnabled = false
-    override val isEnabled: Boolean get() = _isEnabled
-
     private val listener: Listener = Listener()
 
-    override fun enable() {
-        check(!_isEnabled)
-
+    init {
         Game.engine.eventHandlers.register(listener)
-
-        _isEnabled = true
-    }
-
-    override fun disable() {
-        check(_isEnabled)
-
-        Game.engine.eventHandlers.unregister(listener)
-
-        _isEnabled = false
     }
 
     override fun dispose() {
         check(!_isDisposed)
 
-        if (_isEnabled)
-            disable()
+        Game.engine.eventHandlers.unregister(listener)
 
         _isDisposed = true
     }

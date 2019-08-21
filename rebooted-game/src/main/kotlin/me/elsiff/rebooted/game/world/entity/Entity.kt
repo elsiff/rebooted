@@ -5,8 +5,7 @@ import me.elsiff.rebooted.engine.math.Vector2f
 import me.elsiff.rebooted.game.graphic.Graphic
 import me.elsiff.rebooted.game.world.Camera
 import me.elsiff.rebooted.game.world.World
-import me.elsiff.rebooted.game.world.entity.ability.Ability
-import me.elsiff.rebooted.game.world.entity.ability.AbilityRegistry
+import me.elsiff.rebooted.game.world.entity.rule.EntityRule
 import me.elsiff.rebooted.game.world.physic.RigidBody
 
 /**
@@ -20,7 +19,7 @@ interface Entity : Disposable {
     val blockingAltitudes: IntRange
 
     val graphic: Graphic
-    val abilities: AbilityRegistry
+    val rules: MutableList<EntityRule>
 
     var position: Vector2f
         get() = rigidBody.position
@@ -44,4 +43,4 @@ interface Entity : Disposable {
     }
 }
 
-inline fun <reified T : Ability> Entity.findAbility() = abilities[T::class]
+inline fun <reified T : EntityRule> Entity.findRule() = rules.find { it is T }

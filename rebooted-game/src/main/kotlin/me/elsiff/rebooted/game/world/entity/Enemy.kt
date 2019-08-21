@@ -7,9 +7,8 @@ import me.elsiff.rebooted.game.graphic.Graphic
 import me.elsiff.rebooted.game.world.AltitudeRanges
 import me.elsiff.rebooted.game.world.Altitudes
 import me.elsiff.rebooted.game.world.World
-import me.elsiff.rebooted.game.world.entity.ability.AbilityRegistry
+import me.elsiff.rebooted.game.world.entity.rule.EntityRule
 import me.elsiff.rebooted.game.world.physic.AABB
-import me.elsiff.rebooted.game.world.physic.BoundingCircle
 import me.elsiff.rebooted.game.world.physic.RigidBody
 
 /**
@@ -34,7 +33,7 @@ class Enemy(
     override val blockingAltitudes: IntRange = AltitudeRanges.LOW_SKY_ONLY
 
     override val graphic: Graphic = BulletGraphic()
-    override val abilities: AbilityRegistry = AbilityRegistry()
+    override val rules: MutableList<EntityRule> = mutableListOf()
 
     override fun handleCollided(other: Entity) {
         // Do Nothing
@@ -43,7 +42,7 @@ class Enemy(
     override fun dispose() {
         check(!_isDisposed)
 
-        abilities.dispose()
+        rules.forEach { it.dispose() }
 
         _isDisposed = true
     }

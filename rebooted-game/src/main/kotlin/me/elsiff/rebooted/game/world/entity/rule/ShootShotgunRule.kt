@@ -1,4 +1,4 @@
-package me.elsiff.rebooted.game.world.entity.ability
+package me.elsiff.rebooted.game.world.entity.rule
 
 import me.elsiff.rebooted.engine.event.EventHandler
 import me.elsiff.rebooted.engine.event.EventListener
@@ -12,38 +12,22 @@ import me.elsiff.rebooted.game.world.entity.Entity
 /**
  * Created by elsiff on 2019-08-01.
  */
-class ShootShotgunAbility(
-    private val entity: Entity
-) : Ability {
+class ShootShotgunRule(
+    override val entity: Entity
+) : EntityRule {
     private var _isDisposed = false
     override val isDisposed: Boolean get() = _isDisposed
 
-    private var _isEnabled = false
-    override val isEnabled: Boolean get() = _isEnabled
-
     private val listener: Listener = Listener()
 
-    override fun enable() {
-        check(!_isEnabled)
-
+    init {
         Game.engine.eventHandlers.register(listener)
-
-        _isEnabled = true
-    }
-
-    override fun disable() {
-        check(_isEnabled)
-
-        Game.engine.eventHandlers.unregister(listener)
-
-        _isEnabled = false
     }
 
     override fun dispose() {
         check(!_isDisposed)
 
-        if (_isEnabled)
-            disable()
+        Game.engine.eventHandlers.unregister(listener)
 
         _isDisposed = true
     }
