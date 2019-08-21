@@ -13,6 +13,7 @@ interface Window : Disposable {
     var title: String
     var size: Size
     var shouldClose: Boolean
+    var isHidingCursor: Boolean
     val engine: Engine
     val graphics: Graphics
     val input: Input

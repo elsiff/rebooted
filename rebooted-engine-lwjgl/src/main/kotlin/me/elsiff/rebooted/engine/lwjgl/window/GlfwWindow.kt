@@ -50,8 +50,6 @@ class GlfwWindow(
 
         glfwMakeContextCurrent(id)
         GL.createCapabilities()
-
-        glfwSetInputMode(id, GLFW_CURSOR, GLFW_CURSOR_HIDDEN)
     }
 
     override var title: String
@@ -71,6 +69,16 @@ class GlfwWindow(
         get() = glfwWindowShouldClose(id)
         set(value) {
             glfwSetWindowShouldClose(id, value)
+        }
+
+    override var isHidingCursor: Boolean
+        get() {
+            val mode = glfwGetInputMode(id, GLFW_CURSOR)
+            return mode == GLFW_CURSOR_HIDDEN
+        }
+        set(value) {
+            val mode = if (value) GLFW_CURSOR_HIDDEN else GLFW_CURSOR_NORMAL
+            glfwSetInputMode(id, GLFW_CURSOR, mode)
         }
 
     override val graphics: Graphics = GlfwGraphics(this)
