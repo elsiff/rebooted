@@ -2,7 +2,6 @@ package me.elsiff.rebooted.game.graphic
 
 import me.elsiff.rebooted.engine.math.Vector2f
 import me.elsiff.rebooted.engine.window.graphic.drawable.Text
-import me.elsiff.rebooted.game.Colors
 import me.elsiff.rebooted.game.asset.Fonts
 
 /**

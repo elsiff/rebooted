@@ -15,7 +15,7 @@ import me.elsiff.rebooted.engine.window.graphic.Color
 import me.elsiff.rebooted.engine.window.graphic.drawable.Rectangle
 import me.elsiff.rebooted.engine.window.graphic.drawable.Text
 import me.elsiff.rebooted.engine.window.input.Key
-import me.elsiff.rebooted.game.Colors
+import me.elsiff.rebooted.game.graphic.Colors
 import me.elsiff.rebooted.game.Game
 import me.elsiff.rebooted.game.asset.AudioClips
 import me.elsiff.rebooted.game.asset.Fonts

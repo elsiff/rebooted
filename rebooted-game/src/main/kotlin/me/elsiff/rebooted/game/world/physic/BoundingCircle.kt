@@ -4,7 +4,7 @@ import me.elsiff.rebooted.engine.math.Vector2f
 import me.elsiff.rebooted.engine.math.size
 import me.elsiff.rebooted.engine.math.vec2f
 import me.elsiff.rebooted.engine.window.graphic.drawable.Rectangle
-import me.elsiff.rebooted.game.Colors
+import me.elsiff.rebooted.game.graphic.Colors
 import me.elsiff.rebooted.game.graphic.Graphic
 import me.elsiff.rebooted.game.graphic.Layers
 

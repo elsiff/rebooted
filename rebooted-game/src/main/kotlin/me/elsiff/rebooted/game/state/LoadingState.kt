@@ -10,7 +10,7 @@ import me.elsiff.rebooted.engine.lwjgl.LwjglEngine
 import me.elsiff.rebooted.engine.math.vec2f
 import me.elsiff.rebooted.engine.state.GameState
 import me.elsiff.rebooted.engine.window.graphic.drawable.Text
-import me.elsiff.rebooted.game.Colors
+import me.elsiff.rebooted.game.graphic.Colors
 import me.elsiff.rebooted.game.Game
 import me.elsiff.rebooted.game.asset.AssetAssigner
 import me.elsiff.rebooted.game.asset.AudioClips

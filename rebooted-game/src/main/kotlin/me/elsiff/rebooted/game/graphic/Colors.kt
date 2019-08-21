@@ -1,4 +1,4 @@
-package me.elsiff.rebooted.game
+package me.elsiff.rebooted.game.graphic
 
 import me.elsiff.rebooted.engine.window.graphic.Color
 

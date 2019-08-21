@@ -3,7 +3,7 @@ package me.elsiff.rebooted.game.world.physic
 import me.elsiff.rebooted.engine.math.Size
 import me.elsiff.rebooted.engine.math.Vector2f
 import me.elsiff.rebooted.engine.window.graphic.drawable.Rectangle
-import me.elsiff.rebooted.game.Colors
+import me.elsiff.rebooted.game.graphic.Colors
 import me.elsiff.rebooted.game.graphic.Graphic
 import me.elsiff.rebooted.game.graphic.Layers
 
