@@ -1,11 +1,12 @@
 package me.elsiff.rebooted.engine.audio
 
+import me.elsiff.rebooted.engine.Disposable
 import me.elsiff.rebooted.engine.math.Vector3f
 
 /**
  * Created by elsiff on 2019-07-24.
  */
-interface AudioPlayer {
+interface AudioPlayer : Disposable {
     val listener: AudioListener
 
     fun play(

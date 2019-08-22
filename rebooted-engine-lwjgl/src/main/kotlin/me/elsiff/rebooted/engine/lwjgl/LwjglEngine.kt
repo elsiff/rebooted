@@ -8,7 +8,6 @@ import me.elsiff.rebooted.engine.asset.AssetLoaderRegistry
 import me.elsiff.rebooted.engine.asset.request.AudioClipLoadRequest
 import me.elsiff.rebooted.engine.asset.request.FontLoadRequest
 import me.elsiff.rebooted.engine.asset.request.TextureLoadRequest
-import me.elsiff.rebooted.engine.audio.AudioPlayer
 import me.elsiff.rebooted.engine.event.EventHandlerRegistry
 import me.elsiff.rebooted.engine.event.EventTrigger
 import me.elsiff.rebooted.engine.lwjgl.asset.AlAudioClipLoader
@@ -36,7 +35,7 @@ class LwjglEngine(
 
     private lateinit var glfwErrorHandler: GlfwErrorHandler
     override lateinit var mainWindow: GlfwWindow
-    override lateinit var mainAudioPlayer: AudioPlayer
+    override lateinit var mainAudioPlayer: AlAudioPlayer
     override lateinit var clock: Clock
 
     override val assetLoaders: AssetLoaderRegistry = AssetLoaderRegistry()
@@ -104,6 +103,7 @@ class LwjglEngine(
     override fun dispose() {
         check(!_isDisposed)
 
+        mainAudioPlayer.dispose()
         _gameState.dispose()
         mainWindow.dispose()
         glfwTerminate()
@@ -115,6 +115,6 @@ class LwjglEngine(
     override fun createWindow(title: String, size: Size): GlfwWindow =
         GlfwWindow(this, title, size)
 
-    override fun createAudioPlayer(): AudioPlayer =
+    override fun createAudioPlayer(): AlAudioPlayer =
         AlAudioPlayer()
 }

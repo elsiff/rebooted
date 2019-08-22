@@ -79,6 +79,7 @@ class World(
             entity.dispose()
         }
         _entities.clear()
+        audioPlayer.dispose()
 
         _isDisposed = true
     }

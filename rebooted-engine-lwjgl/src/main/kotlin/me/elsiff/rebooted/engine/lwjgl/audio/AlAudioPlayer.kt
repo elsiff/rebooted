@@ -14,7 +14,7 @@ import org.lwjgl.openal.ALC10.*
 /**
  * Created by elsiff on 2019-07-24.
  */
-class AlAudioPlayer : AudioPlayer, Disposable {
+class AlAudioPlayer : AudioPlayer {
     private var _isDisposed: Boolean = false
     override val isDisposed: Boolean get() = _isDisposed
 
